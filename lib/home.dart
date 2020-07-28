@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:orderfood/details_page.dart';
+import 'package:orderfood/widgets/bottom_navigator.dart';
 import 'package:orderfood/widgets/numbers_button.dart';
 
 class Home extends StatelessWidget {
@@ -9,37 +10,7 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: Text('Home'),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text('Home'),
-          ),
-          BottomNavigationBarItem(
-            icon: Stack(
-              children: <Widget>[
-                Icon(
-                  Icons.shopping_cart,
-                  //color: Colors.red,
-                ),
-                Positioned(
-                  top: -2,
-                  right: -3,
-                  child: Text(
-                    '1',
-                    style: TextStyle(
-                        color: Colors.red,
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        backgroundColor: Colors.white),
-                  ),
-                )
-              ],
-            ),
-            title: Text('MY CART'),
-          ),
-        ],
-      ),
+      bottomNavigationBar: BottomNavigator(0),
       body: GestureDetector(
         onTap: () {
           Navigator.push(
@@ -71,7 +42,7 @@ class Home extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      'chaya',
+                      'Biriyani',
                       style: TextStyle(
                           fontSize: 26,
                           fontWeight: FontWeight.w900,

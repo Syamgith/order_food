@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:orderfood/my_cart.dart';
 import 'package:orderfood/widgets/numbers_button.dart';
 
 class DetailsPage extends StatelessWidget {
@@ -75,7 +76,14 @@ class DetailsPage extends StatelessWidget {
                     fontWeight: FontWeight.bold),
               ),
               FlatButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MyCart(),
+                      ),
+                    );
+                  },
                   child: Row(
                     children: <Widget>[
                       Text(
