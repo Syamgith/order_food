@@ -3,9 +3,11 @@ import 'package:orderfood/details_page.dart';
 import 'package:orderfood/widgets/numbers_button.dart';
 
 class CardTile extends StatelessWidget {
-  const CardTile({
-    Key key,
-  }) : super(key: key);
+  String imagUrl;
+  String foodName;
+  String type;
+  String price;
+  CardTile({this.foodName, this.imagUrl, this.price, this.type});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,7 @@ class CardTile extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(14.0),
                 child: Image.network(
-                  'http://foodoyes.com/test/uploads/foods/22021561d4c1a5101981e0ac5704b1ff.jpg',
+                  '$imagUrl',
                 ),
               ),
               SizedBox(
@@ -40,7 +42,7 @@ class CardTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    'Biriyani',
+                    '$foodName',
                     style: TextStyle(
                         fontSize: 26,
                         fontWeight: FontWeight.w900,
@@ -49,11 +51,11 @@ class CardTile extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
-                  Text('Rice'),
+                  Text('$type'),
                   SizedBox(
                     height: 10,
                   ),
-                  Text('10 Rs'),
+                  Text('$price Rs'),
                   SizedBox(
                     height: 10,
                   ),
