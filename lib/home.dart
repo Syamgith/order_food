@@ -31,6 +31,7 @@ class _HomeState extends State<Home> {
                     foodName: foodList[index]['foodName'],
                     type: foodList[index]['foodCategory'],
                     price: foodList[index]['foodOfferPrice'],
+                    foodId: foodList[index]['foodId'],
                   );
                 },
               );

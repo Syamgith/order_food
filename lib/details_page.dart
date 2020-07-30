@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:orderfood/food-data.dart';
 import 'package:orderfood/my_cart.dart';
 import 'package:orderfood/widgets/numbers_button.dart';
 
 class DetailsPage extends StatelessWidget {
+  String foodId;
+  String foodname;
+  String fooddescription;
+  String price;
+  String imageUrl;
+  DetailsPage({this.foodId});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,41 +23,45 @@ class DetailsPage extends StatelessWidget {
           children: <Widget>[
             ClipRRect(
               borderRadius: BorderRadius.circular(15.0),
-              child: Image.network(
-                  'http://foodoyes.com/test/uploads/foods/dc29459b779e8067f3dfcbbd02c35a4c.jpg'),
+              child: Image.network('$imageUrl'),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                Text(
-                  'Biriyani',
-                  style: TextStyle(
-                      color: Colors.red,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 24),
-                ),
-                Text(
-                  '100 Rs',
-                  style: TextStyle(
-                      color: Colors.red,
-                      fontWeight: FontWeight.w900,
-                      fontSize: 22),
-                )
-              ],
+            Flexible(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Text(
+                    '$foodname',
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        color: Colors.red,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16),
+                  ),
+                  Text(
+                    '$price Rs',
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        color: Colors.red,
+                        fontWeight: FontWeight.w900,
+                        fontSize: 16),
+                  )
+                ],
+              ),
             ),
             Text(
               'Product description',
               style: TextStyle(fontWeight: FontWeight.w900, fontSize: 22),
             ),
-            Text(
-                'Oryx Special with 10% off , Actual price Rs165 , Offer Price Rs 149'),
+            Text('$fooddescription'),
             Row(
               children: <Widget>[
                 NumbersButton(
                   edge: EdgeInsets.all(6.0),
                 ),
                 RaisedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    FoodData.findFoodDetails(foodId);
+                  },
                   color: Colors.red,
                   child: Text(
                     'ADD TO CART',

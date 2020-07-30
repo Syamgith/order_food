@@ -16,4 +16,19 @@ class FoodData {
       return null;
     }
   }
+
+  static findFoodDetails(String foodId) async {
+    http.Response response = await http.post(
+        'http://foodoyes.com/test/api/foodDetails',
+        body: {"foodId": "$foodId"});
+    if (response.statusCode == 200) {
+      print('Sucess ${response.statusCode}');
+      var decodedBody = jsonDecode(response.body);
+      print(decodedBody['foodName']);
+      //return decodedBody['results'];
+    } else {
+      print('failed ${response.statusCode}');
+      return null;
+    }
+  }
 }

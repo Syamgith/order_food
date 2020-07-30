@@ -7,7 +7,8 @@ class CardTile extends StatelessWidget {
   String foodName;
   String type;
   String price;
-  CardTile({this.foodName, this.imagUrl, this.price, this.type});
+  String foodId;
+  CardTile({this.foodName, this.imagUrl, this.price, this.type, this.foodId});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,9 @@ class CardTile extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => DetailsPage(),
+            builder: (context) => DetailsPage(
+              foodId: foodId,
+            ),
           ),
         );
       },
