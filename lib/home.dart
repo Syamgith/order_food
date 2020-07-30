@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:orderfood/food-data.dart';
 import 'package:orderfood/widgets/bottom_navigator.dart';
 import 'package:orderfood/widgets/card_tile.dart';
 
@@ -13,19 +14,27 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
-        //leading: FloatingActionButton(onPressed: findFood),
       ),
       bottomNavigationBar: BottomNavigator(0),
-      body: StreamBuilder<Object>(
-          stream: null,
+      body: FutureBuilder<List>(
+          future: FoodData.findFood(),
           builder: (context, snapshot) {
-            return ListView.builder(
-              itemBuilder: (context, index) {
-                return CardTile(
-                  foodName: '',
-                );
-              },
-            );
+            if (snapshot.data == null) {
+              return Center(child: CircularProgressIndicator());
+            } else {
+              List foodList = snapshot.data;
+              return ListView.builder(
+                itemCount: foodList.length,
+                itemBuilder: (context, index) {
+                  return CardTile(
+                    imagUrl: foodList[index]['foodThumb'],
+                    foodName: foodList[index]['foodName'],
+                    type: foodList[index]['foodCategory'],
+                    price: foodList[index]['foodOfferPrice'],
+                  );
+                },
+              );
+            }
           }),
     );
   }

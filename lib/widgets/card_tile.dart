@@ -36,34 +36,37 @@ class CardTile extends StatelessWidget {
               SizedBox(
                 width: 10.0,
               ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    '$foodName',
-                    style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.red),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text('$type'),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text('$price Rs'),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 60.0),
-                    child: NumbersButton(),
-                  )
-                ],
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      '$foodName',
+                      overflow: TextOverflow.ellipsis,
+                      softWrap: false,
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.red),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text('$type'),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text('$price Rs'),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 60.0),
+                      child: NumbersButton(),
+                    )
+                  ],
+                ),
               )
             ],
           ),

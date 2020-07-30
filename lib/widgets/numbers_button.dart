@@ -10,6 +10,7 @@ class NumbersButton extends StatelessWidget {
       child: Padding(
         padding: edge,
         child: Row(
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Icon(
               Icons.remove,
