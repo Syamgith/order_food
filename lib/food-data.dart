@@ -17,7 +17,7 @@ class FoodData {
     }
   }
 
-  static findFoodDetails(String foodId) async {
+  static Future<Map> findFoodDetails(String foodId) async {
     http.Response response = await http.post(
         'http://foodoyes.com/test/api/foodDetails',
         body: {"foodId": "$foodId"});
@@ -25,7 +25,7 @@ class FoodData {
       print('Sucess ${response.statusCode}');
       var decodedBody = jsonDecode(response.body);
       print(decodedBody['foodName']);
-      //return decodedBody['results'];
+      return decodedBody;
     } else {
       print('failed ${response.statusCode}');
       return null;

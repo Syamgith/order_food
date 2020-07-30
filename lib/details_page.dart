@@ -5,10 +5,10 @@ import 'package:orderfood/widgets/numbers_button.dart';
 
 class DetailsPage extends StatelessWidget {
   String foodId;
-  String foodname;
-  String fooddescription;
-  String price;
-  String imageUrl;
+//  String foodname;
+//  String fooddescription;
+//  String price;
+//  String imageUrl;
   DetailsPage({this.foodId});
   @override
   Widget build(BuildContext context) {
@@ -16,64 +16,79 @@ class DetailsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Details'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            ClipRRect(
-              borderRadius: BorderRadius.circular(15.0),
-              child: Image.network('$imageUrl'),
-            ),
-            Flexible(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Text(
-                    '$foodname',
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                        color: Colors.red,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16),
-                  ),
-                  Text(
-                    '$price Rs',
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                        color: Colors.red,
-                        fontWeight: FontWeight.w900,
-                        fontSize: 16),
-                  )
-                ],
-              ),
-            ),
-            Text(
-              'Product description',
-              style: TextStyle(fontWeight: FontWeight.w900, fontSize: 22),
-            ),
-            Text('$fooddescription'),
-            Row(
-              children: <Widget>[
-                NumbersButton(
-                  edge: EdgeInsets.all(6.0),
+      body: FutureBuilder<Map>(
+          future: FoodData.findFoodDetails(foodId),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              Map foodDetails = snapshot.data;
+              print(snapshot.data['foodName']);
+              return Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(15.0),
+                      child: Image.network('${foodDetails['foodImage']}'),
+                    ),
+                    Flexible(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: <Widget>[
+                          Text(
+                            '${foodDetails['foodName']}',
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                color: Colors.red,
+                                fontWeight: FontWeight.w900,
+                                fontSize: 17),
+                          ),
+                          Text(
+                            '${foodDetails['foodOfferPrice']} Rs',
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                color: Colors.red,
+                                fontWeight: FontWeight.w900,
+                                fontSize: 16),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(2.0),
+                      child: Text(
+                        'Product description',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w900, fontSize: 22),
+                      ),
+                    ),
+                    Text('${foodDetails['foodDescription']}'),
+                    SizedBox(
+                      height: 5.0,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        NumbersButton(
+                          edge: EdgeInsets.all(6.0),
+                        ),
+                        RaisedButton(
+                          onPressed: () {},
+                          color: Colors.red,
+                          child: Text(
+                            'ADD TO CART',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
                 ),
-                RaisedButton(
-                  onPressed: () {
-                    FoodData.findFoodDetails(foodId);
-                  },
-                  color: Colors.red,
-                  child: Text(
-                    'ADD TO CART',
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ],
-            )
-          ],
-        ),
-      ),
+              );
+            } else
+              return Center(child: CircularProgressIndicator());
+          }),
       bottomNavigationBar: BottomAppBar(
         color: Colors.red,
         child: Padding(
