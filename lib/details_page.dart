@@ -46,7 +46,9 @@ class DetailsPage extends StatelessWidget {
                 'Oryx Special with 10% off , Actual price Rs165 , Offer Price Rs 149'),
             Row(
               children: <Widget>[
-                NumbersButton(),
+                NumbersButton(
+                  edge: EdgeInsets.all(6.0),
+                ),
                 RaisedButton(
                   onPressed: () {},
                   color: Colors.red,

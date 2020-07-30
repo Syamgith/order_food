@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 class NumbersButton extends StatelessWidget {
+  NumbersButton({this.edge = const EdgeInsets.all(0.0)});
+  final EdgeInsetsGeometry edge;
   @override
   Widget build(BuildContext context) {
     return Card(
       color: Colors.red,
       child: Padding(
-        padding: const EdgeInsets.all(6.0),
+        padding: edge,
         child: Row(
           children: <Widget>[
             Icon(
