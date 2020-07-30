@@ -18,4 +18,9 @@ class ItemData extends ChangeNotifier {
   List<Item> getCartList() {
     return _cartList;
   }
+
+  void deleteItem(Item item) {
+    _cartList.remove(item);
+    notifyListeners();
+  }
 }

@@ -20,11 +20,34 @@ class MyCart extends StatelessWidget {
             child: ListView.builder(
                 itemCount: cartList.length,
                 itemBuilder: (context, index) {
-                  return CartItemTile(
-                    name: cartList[index].itemName,
-                    quantity: cartList[index].quantity,
-                    price: cartList[index].price,
-                    category: cartList[index].category,
+                  return Stack(
+                    children: <Widget>[
+                      CartItemTile(
+                        name: cartList[index].itemName,
+                        quantity: cartList[index].quantity,
+                        price: cartList[index].price,
+                        category: cartList[index].category,
+                      ),
+                      Positioned(
+                        top: 60,
+                        right: 7,
+                        child: CircleAvatar(
+                          radius: 20,
+                          backgroundColor: Colors.black12,
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.delete,
+                              color: Colors.red,
+                              size: 25.0,
+                            ),
+                            onPressed: () {
+                              Provider.of<ItemData>(context, listen: false)
+                                  .deleteItem(cartList[index]);
+                            },
+                          ),
+                        ),
+                      )
+                    ],
                   );
                 }),
           ),
