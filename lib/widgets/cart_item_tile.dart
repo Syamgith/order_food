@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CartItemTile extends StatelessWidget {
-  String name;
-  String quantity;
-  String category;
-  String price;
-  String imageUrl;
+  final String name;
+  final String quantity;
+  final String category;
+  final String price;
   CartItemTile({this.name, this.price, this.category, this.quantity});
   @override
   Widget build(BuildContext context) {

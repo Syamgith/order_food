@@ -3,11 +3,12 @@ import 'package:orderfood/details_page.dart';
 import 'package:orderfood/widgets/numbers_button.dart';
 
 class CardTile extends StatelessWidget {
-  String imagUrl;
-  String foodName;
-  String type;
-  String price;
-  String foodId;
+  final String imagUrl;
+  final String foodName;
+  final String type;
+  final String price;
+  final String foodId;
+  int count = 1;
   CardTile({this.foodName, this.imagUrl, this.price, this.type, this.foodId});
 
   @override
@@ -60,7 +61,7 @@ class CardTile extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
-                    Text('$price Rs'),
+                    Text('${count * double.parse(price)} Rs'),
                     SizedBox(
                       height: 10,
                     ),

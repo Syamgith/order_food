@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:orderfood/home.dart';
+import 'package:orderfood/models/item_data.dart';
 import 'package:orderfood/my_cart.dart';
+import 'package:provider/provider.dart';
 
 class BottomNavigator extends StatelessWidget {
   BottomNavigator(this.currentindex);
@@ -40,13 +42,13 @@ class BottomNavigator extends StatelessWidget {
               ),
               Positioned(
                 top: -2,
-                right: -3,
+                right: 0,
                 child: Text(
-                  '1',
+                  '${Provider.of<ItemData>(context).noOfItems()}',
                   style: TextStyle(
                       color: Colors.red,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w900,
                       backgroundColor: Colors.white),
                 ),
               )

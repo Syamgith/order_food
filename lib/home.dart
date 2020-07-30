@@ -3,12 +3,7 @@ import 'package:orderfood/food-data.dart';
 import 'package:orderfood/widgets/bottom_navigator.dart';
 import 'package:orderfood/widgets/card_tile.dart';
 
-class Home extends StatefulWidget {
-  @override
-  _HomeState createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
+class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
