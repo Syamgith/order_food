@@ -59,7 +59,7 @@ class DetailsPage extends StatelessWidget {
                       child: Text(
                         'Product description',
                         style: TextStyle(
-                            fontWeight: FontWeight.w900, fontSize: 22),
+                            fontWeight: FontWeight.bold, fontSize: 20),
                       ),
                     ),
                     Text('${foodDetails['foodDescription']}'),
@@ -72,7 +72,15 @@ class DetailsPage extends StatelessWidget {
                           edge: EdgeInsets.all(6.0),
                         ),
                         RaisedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            //go to mycart with item information
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MyCart(),
+                              ),
+                            );
+                          },
                           color: Colors.red,
                           child: Text(
                             'ADD TO CART',
