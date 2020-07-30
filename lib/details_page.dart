@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:orderfood/food-data.dart';
+import 'package:orderfood/models/item.dart';
+import 'package:orderfood/models/item_data.dart';
 import 'package:orderfood/my_cart.dart';
 import 'package:orderfood/widgets/numbers_button.dart';
+import 'package:provider/provider.dart';
 
 class DetailsPage extends StatelessWidget {
   String foodId;
@@ -21,7 +24,11 @@ class DetailsPage extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               Map foodDetails = snapshot.data;
-              print(snapshot.data['foodName']);
+              String foodname = foodDetails['foodName'];
+              String price = foodDetails['foodOfferPrice'];
+              String descri = foodDetails['foodDescription'];
+              String imgUrl = foodDetails['foodImage'];
+              String category = foodDetails['foodCategoryName'];
               return Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
@@ -29,14 +36,14 @@ class DetailsPage extends StatelessWidget {
                   children: <Widget>[
                     ClipRRect(
                       borderRadius: BorderRadius.circular(15.0),
-                      child: Image.network('${foodDetails['foodImage']}'),
+                      child: Image.network('$imgUrl'),
                     ),
                     Flexible(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: <Widget>[
                           Text(
-                            '${foodDetails['foodName']}',
+                            '$foodname',
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                                 color: Colors.red,
@@ -44,7 +51,7 @@ class DetailsPage extends StatelessWidget {
                                 fontSize: 17),
                           ),
                           Text(
-                            '${foodDetails['foodOfferPrice']} Rs',
+                            '$price Rs',
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                                 color: Colors.red,
@@ -62,7 +69,7 @@ class DetailsPage extends StatelessWidget {
                             fontWeight: FontWeight.bold, fontSize: 20),
                       ),
                     ),
-                    Text('${foodDetails['foodDescription']}'),
+                    Text('$descri'),
                     SizedBox(
                       height: 5.0,
                     ),
@@ -73,7 +80,11 @@ class DetailsPage extends StatelessWidget {
                         ),
                         RaisedButton(
                           onPressed: () {
-                            //go to mycart with item information
+                            Provider.of<ItemData>(context, listen: false)
+                                .addItem(Item(
+                                    itemName: foodname,
+                                    price: price,
+                                    category: category));
                             Navigator.push(
                               context,
                               MaterialPageRoute(
