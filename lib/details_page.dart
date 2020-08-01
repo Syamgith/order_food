@@ -138,8 +138,9 @@ class _DetailsPageState extends State<DetailsPage> {
                                 onPressed: () {
                                   Provider.of<ItemData>(context, listen: false)
                                       .addItem(Item(
+                                          id: widget.foodId,
                                           itemName: foodname,
-                                          quantity: count.toString(),
+                                          quantity: count,
                                           price:
                                               '${count * double.parse(price)}',
                                           category: category));

@@ -9,7 +9,7 @@ class NumbersButton extends StatefulWidget {
 }
 
 class _NumbersButtonState extends State<NumbersButton> {
-  int count = 1;
+  int count = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class _NumbersButtonState extends State<NumbersButton> {
           children: <Widget>[
             GestureDetector(
               onTap: () {
-                if (count > 1) {
+                if (count > 0) {
                   setState(() {
                     count--;
                   });
@@ -52,6 +52,13 @@ class _NumbersButtonState extends State<NumbersButton> {
                 setState(() {
                   count++;
                 });
+//                Provider.of<ItemData>(context, listen: false)
+//                    .addItem(Item(
+//                    itemName: foodname,
+//                    quantity: count,
+//                    price:
+//                    '${count * double.parse(price)}',
+//                    category: category));
               },
               child: Icon(
                 Icons.add,

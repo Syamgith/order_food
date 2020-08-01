@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CartItemTile extends StatelessWidget {
   final String name;
-  final String quantity;
+  final int quantity;
   final String category;
   final String price;
   CartItemTile({this.name, this.price, this.category, this.quantity});

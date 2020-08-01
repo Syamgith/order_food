@@ -7,9 +7,9 @@ class FoodData {
     http.Response response =
         await http.get('http://foodoyes.com/test/api/foodList');
     if (response.statusCode == 200) {
-      print('Sucess ${response.statusCode}');
+      //print('Sucess ${response.statusCode}');
       var decodedBody = jsonDecode(response.body);
-      print(decodedBody['results'][0]['foodName']);
+      //print(decodedBody['results'][0]['foodName']);
       return decodedBody['results'];
     } else {
       print('failed ${response.statusCode}');
@@ -22,9 +22,9 @@ class FoodData {
         'http://foodoyes.com/test/api/foodDetails',
         body: {"foodId": "$foodId"});
     if (response.statusCode == 200) {
-      print('Sucess ${response.statusCode}');
+      //print('Sucess ${response.statusCode}');
       var decodedBody = jsonDecode(response.body);
-      print(decodedBody['foodName']);
+      //print(decodedBody['foodName']);
       return decodedBody;
     } else {
       print('failed ${response.statusCode}');
