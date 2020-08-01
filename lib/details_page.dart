@@ -141,8 +141,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                           id: widget.foodId,
                                           itemName: foodname,
                                           quantity: count,
-                                          price:
-                                              '${count * double.parse(price)}',
+                                          price: count * double.parse(price),
                                           category: category));
                                   Navigator.pushReplacement(
                                     context,

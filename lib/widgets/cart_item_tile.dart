@@ -4,7 +4,7 @@ class CartItemTile extends StatelessWidget {
   final String name;
   final int quantity;
   final String category;
-  final String price;
+  final double price;
   CartItemTile({this.name, this.price, this.category, this.quantity});
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class CartItemTile extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    '$price RS',
+                    '${price.round()} RS',
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w900,

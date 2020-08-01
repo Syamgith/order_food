@@ -3,6 +3,6 @@ class Item {
   String itemName;
   int quantity;
   String category;
-  String price;
+  double price;
   Item({this.id, this.itemName, this.quantity, this.category, this.price});
 }
