@@ -15,7 +15,7 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
-  int count = 2;
+  int count = 1;
 
   String price;
 

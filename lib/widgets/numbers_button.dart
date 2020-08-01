@@ -11,10 +11,9 @@ class NumbersButton extends StatefulWidget {
 }
 
 class _NumbersButtonState extends State<NumbersButton> {
-  int count = 0;
-
   @override
   Widget build(BuildContext context) {
+    int count = Provider.of<ItemData>(context).getQuantity(widget.foodId);
     return Card(
       color: Colors.red,
       child: Padding(

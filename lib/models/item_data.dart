@@ -36,6 +36,11 @@ class ItemData extends ChangeNotifier {
     notifyListeners();
   }
 
+  void deleteItem(Item item) {
+    _cartList.remove(item);
+    notifyListeners();
+  }
+
   void removeUnwantedItem(String id) {
     Item oldItem =
         _cartList.firstWhere((element) => element.id == id, orElse: () => null);
@@ -58,8 +63,12 @@ class ItemData extends ChangeNotifier {
     return _cartList;
   }
 
-  void deleteItem(Item item) {
-    _cartList.remove(item);
-    notifyListeners();
+  int getQuantity(String id) {
+    Item item =
+        _cartList.firstWhere((element) => element.id == id, orElse: () => null);
+    if (item != null) {
+      return item.quantity;
+    } else
+      return 0;
   }
 }
