@@ -28,6 +28,14 @@ class _NumbersButtonState extends State<NumbersButton> {
                   setState(() {
                     count--;
                   });
+                  Provider.of<ItemData>(context, listen: false)
+                      .decrementItemCount(Item(
+                    id: widget.foodId,
+                  ));
+                  if (count == 0) {
+                    Provider.of<ItemData>(context, listen: false)
+                        .removeUnwantedItem(widget.foodId);
+                  }
                 }
               },
               child: Icon(
@@ -54,9 +62,9 @@ class _NumbersButtonState extends State<NumbersButton> {
                 setState(() {
                   count++;
                 });
-                Provider.of<ItemData>(context, listen: false).addItem(Item(
+                Provider.of<ItemData>(context, listen: false)
+                    .incrementItemCount(Item(
                   id: widget.foodId,
-                  quantity: count,
                 ));
               },
               child: Icon(

@@ -14,6 +14,39 @@ class ItemData extends ChangeNotifier {
     notifyListeners();
   }
 
+  void incrementItemCount(Item newItem) {
+    Item oldItem = _cartList.firstWhere((element) => element.id == newItem.id,
+        orElse: () => null);
+    if (oldItem != null) {
+      oldItem.quantity++;
+    } else {
+      _cartList.add(newItem);
+    }
+    notifyListeners();
+  }
+
+  void decrementItemCount(Item newItem) {
+    Item oldItem = _cartList.firstWhere((element) => element.id == newItem.id,
+        orElse: () => null);
+    if (oldItem != null) {
+      oldItem.quantity--;
+    } else {
+      _cartList.add(newItem);
+    }
+    notifyListeners();
+  }
+
+  void removeUnwantedItem(String id) {
+    Item oldItem =
+        _cartList.firstWhere((element) => element.id == id, orElse: () => null);
+    if (oldItem != null) {
+      if (oldItem.quantity < 1) {
+        deleteItem(oldItem);
+      }
+    }
+    notifyListeners();
+  }
+
   int noOfItems() {
     if (_cartList != null) {
       return _cartList.length;
