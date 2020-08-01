@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:orderfood/food-data.dart';
 import 'package:orderfood/models/item.dart';
 import 'package:orderfood/models/item_data.dart';
 import 'package:orderfood/widgets/bottom_navigator.dart';
@@ -22,12 +23,21 @@ class MyCart extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Stack(
                     children: <Widget>[
-                      CartItemTile(
-                        name: cartList[index].itemName,
-                        quantity: cartList[index].quantity,
-                        price: cartList[index].price,
-                        category: cartList[index].category,
-                      ),
+                      FutureBuilder<Object>(
+                          future: FoodData.findFoodDetails(cartList[index].id),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              Map foodDetails = snapshot.data;
+                              return CartItemTile(
+                                name: foodDetails['foodName'],
+                                quantity: cartList[index].quantity,
+                                price: cartList[index].quantity *
+                                    double.parse(foodDetails['foodOfferPrice']),
+                                category: foodDetails['foodCategoryName'],
+                              );
+                            } else
+                              return Center(child: CircularProgressIndicator());
+                          }),
                       Positioned(
                         top: 60,
                         right: 7,

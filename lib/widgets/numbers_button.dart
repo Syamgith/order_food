@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:orderfood/models/item.dart';
+import 'package:orderfood/models/item_data.dart';
+import 'package:provider/provider.dart';
 
 class NumbersButton extends StatefulWidget {
-  NumbersButton({this.edge = const EdgeInsets.all(0.0)});
-  final EdgeInsetsGeometry edge;
-
+  NumbersButton({this.foodId});
+  String foodId;
   @override
   _NumbersButtonState createState() => _NumbersButtonState();
 }
@@ -16,7 +18,7 @@ class _NumbersButtonState extends State<NumbersButton> {
     return Card(
       color: Colors.red,
       child: Padding(
-        padding: widget.edge,
+        padding: EdgeInsets.all(0.0),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -52,13 +54,10 @@ class _NumbersButtonState extends State<NumbersButton> {
                 setState(() {
                   count++;
                 });
-//                Provider.of<ItemData>(context, listen: false)
-//                    .addItem(Item(
-//                    itemName: foodname,
-//                    quantity: count,
-//                    price:
-//                    '${count * double.parse(price)}',
-//                    category: category));
+                Provider.of<ItemData>(context, listen: false).addItem(Item(
+                  id: widget.foodId,
+                  quantity: count,
+                ));
               },
               child: Icon(
                 Icons.add,

@@ -8,7 +8,6 @@ class ItemData extends ChangeNotifier {
         orElse: () => null);
     if (oldItem != null) {
       oldItem.quantity = oldItem.quantity + newItem.quantity;
-      oldItem.price = oldItem.price + newItem.price;
     } else {
       _cartList.add(newItem);
     }

@@ -67,7 +67,9 @@ class CardTile extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 60.0),
-                      child: NumbersButton(),
+                      child: NumbersButton(
+                        foodId: foodId,
+                      ),
                     )
                   ],
                 ),
