@@ -3,17 +3,15 @@ import 'package:orderfood/models/item.dart';
 
 class ItemData extends ChangeNotifier {
   List<Item> _cartList = [];
-  void addItem(Item item) {
-    // if item.id exists replace quantity with new quantity + new quantity
-    Item oldItem = _cartList.firstWhere((element) => element.id == item.id,
+  void addItem(Item newItem) {
+    Item oldItem = _cartList.firstWhere((element) => element.id == newItem.id,
         orElse: () => null);
     if (oldItem != null) {
-      oldItem.quantity = oldItem.quantity + item.quantity;
+      oldItem.quantity = oldItem.quantity + newItem.quantity;
     } else {
-      // else add to _cartList.
-      _cartList.add(item);
-      notifyListeners();
+      _cartList.add(newItem);
     }
+    notifyListeners();
   }
 
   int noOfItems() {
