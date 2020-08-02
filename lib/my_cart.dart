@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:orderfood/food-data.dart';
+import 'package:orderfood/models/food-data.dart';
 import 'package:orderfood/models/item.dart';
 import 'package:orderfood/models/item_data.dart';
 import 'package:orderfood/widgets/bottom_navigator.dart';
@@ -36,7 +36,7 @@ class MyCart extends StatelessWidget {
                                 category: foodDetails['foodCategoryName'],
                               );
                             } else
-                              return Center(child: CircularProgressIndicator());
+                              return Center(child: LinearProgressIndicator());
                           }),
                       Positioned(
                         top: 60,

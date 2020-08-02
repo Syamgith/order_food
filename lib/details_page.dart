@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:orderfood/food-data.dart';
+import 'package:orderfood/models/food-data.dart';
 import 'package:orderfood/models/item.dart';
 import 'package:orderfood/models/item_data.dart';
 import 'package:orderfood/my_cart.dart';
